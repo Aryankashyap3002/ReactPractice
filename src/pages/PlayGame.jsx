@@ -24,7 +24,7 @@ export function PlayGame() {
 
     return (
         <>
-            <h1>Play Game {state.wordValue}</h1>
+            <h1>Play Game</h1>
             <div>
                 <ListGuessWord originalWord={state.wordValue} guessedWord={guessedWord} />
             </div>
