@@ -1,15 +1,19 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ListGuessWord } from "../GuessWordUtility/ListGuessedWord";
 import { Alphabets } from "../Alphabets/Alphabet";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { StagesOfGame } from "../Images/StagesOfGame";
+import { WordContext } from "../Context/wordContext";
 
 export function PlayGame() {
-    const { state } = useLocation();
+    // const { state } = useLocation();
+    const {words} = useContext(WordContext);
     const [guessedWord, setGussedWord] = useState([]);
     const [level, setLevel] = useState(0);
 
-    const originalWordList = state.wordValue.toUpperCase().split('');
+    console.log(words);
+
+    const originalWordList = words.toUpperCase().split('');
 
     const originalWordSet = new Set(originalWordList);
 
@@ -26,10 +30,10 @@ export function PlayGame() {
         <>
             <h1>Play Game</h1>
             <div>
-                <ListGuessWord originalWord={state.wordValue} guessedWord={guessedWord} />
+                <ListGuessWord originalWord={words} guessedWord={guessedWord} />
             </div>
             <div>
-                <Alphabets originalWord={state.wordValue} guessedWord={guessedWord} onLetterClick={handleAlphabtes} />
+                <Alphabets originalWord={words} guessedWord={guessedWord} onLetterClick={handleAlphabtes} />
             </div>
             <div>
                 <StagesOfGame level={level}/>
